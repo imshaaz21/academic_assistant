@@ -138,7 +138,7 @@ class DeadlineTracker:
 
         with st.container():
             st.markdown(f"""
-            <div style="background-color: {card_color}; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+            <div style="background-color: {card_color}; padding: 1rem; border-radius: 8px; margin: 1rem 0; color: #333;">
                 <h4>{status_emoji} {deadline['title']}</h4>
                 <p><strong>Date:</strong> {deadline_date.strftime('%B %d, %Y')}</p>
                 <p><strong>Priority:</strong> {deadline['priority']} | <strong>Category:</strong> {deadline['category']}</p>

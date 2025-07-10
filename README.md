@@ -82,6 +82,15 @@ max_file_size = 10485760
 supported_formats = [".pdf", ".txt"]
 ```
 
+## Docker
+```shell
+# Build the image
+docker build -t academic-assistant .
+
+# Run the container
+docker run -p 8501:8501 -v $(pwd)/data:/app/data academic-assistant
+```
+
 ## Usage
 
 1. Start the Ollama service:

@@ -158,7 +158,7 @@ class CitationDisplay:
                 st.text_area("APA", apa_citation, height=100, key=f"apa_{citation['id']}")
 
                 mla_citation = self.citation_manager.format_citation(citation['id'], "mla")
-                st.text_area("MLA", mla_citation, height=60, key=f"mla_{citation['id']}")
+                st.text_area("MLA", mla_citation, height=100, key=f"mla_{citation['id']}")
 
                 col_edit, col_delete = st.columns(2)
 
