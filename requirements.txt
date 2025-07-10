@@ -1,0 +1,7 @@
+streamlit>=1.22.0
+streamlit-option-menu>=0.3.2
+plotly>=5.14.0
+pandas>=1.5.3
+chromadb>=0.4.6
+ollama>=0.1.0
+python-dotenv>=1.0.0
