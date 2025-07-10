@@ -1,0 +1,20 @@
+[paths]
+data_dir = "data"
+papers_dir = "data/papers"
+citations_dir = "data/citations"
+deadlines_dir = "data/deadlines"
+
+[llm]
+ollama_base_url = "http://localhost:11434"
+model_name = "deepseek-r1:1.5b"
+
+[chroma]
+host = "localhost"
+port = 8000
+db_path = "data/chroma_db"
+
+[app]
+title = "Academic Research Assistant"
+description = "AI-powered research companion for paper analysis and citation management"
+max_file_size = 10485760
+supported_formats = [".pdf", ".txt"]
