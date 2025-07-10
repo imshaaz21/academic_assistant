@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # ChromaDB service
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: academic-assistant-chromadb
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma-data:/chroma/chroma
+    environment:
+      - CHROMA_SERVER_HOST=0.0.0.0
+      - CHROMA_SERVER_HTTP_PORT=8000
+    networks:
+      - academic-network
+    restart: unless-stopped
+
+  # Ollama service
+  ollama:
+    image: ollama/ollama:latest
+    container_name: academic-assistant-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - academic-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  # Academic Research Assistant app
+  academic-assistant:
+    build: .
+    container_name: academic-assistant-app
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./static:/app/static
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+    depends_on:
+      - chromadb
+      - ollama
+    networks:
+      - academic-network
+    restart: unless-stopped
+
+volumes:
+  chroma-data:
+  ollama-data:
+
+networks:
+  academic-network:
+    driver: bridge
